@@ -1,5 +1,5 @@
+import random
 import pygame
-from drop import Drop
 
 pygame.init()
 clock = pygame.time.Clock()
@@ -7,8 +7,20 @@ WIDTH = 640
 HEIGHT = 360
 BG = (230, 230, 250)
 DISPLAYSURF = pygame.display.set_mode((WIDTH, HEIGHT))
-#DISPLAYSURF.fill(BG)
+
 pygame.display.set_caption('Purple Rain!')
+
+class Drop:
+    def __init__(self, WIDTH):
+        self.x = random.randint(0, WIDTH)
+        self.y = random.randint(-500, -50)
+        self.yspeed = random.randint(4, 10)
+        self.len = random.randint(10, 40)
+
+    def fall(self, HEIGHT):
+        self.y += self.yspeed
+        if self.y > HEIGHT:
+            self.y = random.randint(-200, -100)
 
 running = True
 drops = []
